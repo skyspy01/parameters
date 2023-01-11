@@ -1,0 +1,36 @@
+Index.html
+<form action="details" method="get">
+ User Name: <input type="text" name="uname"><br>
+Contact No: <input type="text" name="cno"><br>
+<input type="submit" value="submit">
+</form>
+
+ServletRequest.java
+import javax.servlet.http.*; 
+import javax.servlet.*; 
+import java.io.*; 
+public class ServletRequest extends HttpServlet{ 
+   public void doGet(HttpServletRequest req,HttpServletResponse res)  throws ServletException,IOException
+  {  
+res.setContentType("text/html"); 
+PrintWriter pwriter=res.getWriter(); 
+     String name = req.getParameter("uname");
+     String contact = req.getParameter("cno");
+pwriter.println("!Welcome: "+name); 
+pwriter.println("Your Contact no: "+contact); 
+pwriter.close(); 
+  }   
+ }
+
+
+web.xml(Deployment Descriptor)
+<web-app>
+<servlet>
+<servlet-name>ServletRequest</servlet-name>
+<servlet-class>ServletRequest</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ServletRequest</servlet-name>
+<url-pattern> /details</ url-pattern >
+</servlet-mapping>
+</web-app>
